@@ -3,7 +3,7 @@
 public class Card {
     private final String face;
     private final String suit;
-    private int value;
+    private final int value;
 
     public Card(String cardFace, String cardSuit, int value) {
         this.face = cardFace; // Initialize face of card
@@ -15,18 +15,7 @@ public class Card {
         return face + " of " + suit;
     }
 
-    // The following method compares the value of cards for the game
-    public int compare(Card card1) {
-        final int BIGGER = 1;
-        final int EQUAL = 0;
-        final int SMALLER = -1;
-
-        if (this.value > card1.value) {
-            return BIGGER;
-        }
-        if (this.value < card1.value) {
-            return SMALLER;
-        }
-        return EQUAL;
+    public int getValue() {
+        return this.value;
     }
 }

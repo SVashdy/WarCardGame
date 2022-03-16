@@ -6,7 +6,7 @@ public class DeckOfCards {
     private static final SecureRandom randomNumbers = new SecureRandom();
     private static final int NUMBER_OF_CARDS = 52; // constant # of Cards
 
-    private ArrayList<Card> deck = new ArrayList<Card>(NUMBER_OF_CARDS);
+    private final ArrayList<Card> deck = new ArrayList<Card>(NUMBER_OF_CARDS);
     private int currentCard = 0; // index of next Card to be dealt (0-51)
 
     // constructor fills deck of Cards
@@ -28,6 +28,15 @@ public class DeckOfCards {
     public void addCard(Card card) {
         this.deck.add(0, card);
     }
+    public void addCardToBottom(Card card) {
+        this.deck.add(this.deck.size(), card);
+    }
+    public void addCardsToBottom(ArrayList<Card> cards) {
+        for (int i=0; i<cards.size(); i++) {
+            this.deck.add(this.deck.size(), cards.get(i));
+        }
+    }
+
 
     // shuffle deck of Cards with one-pass algorithm
     public void shuffle() {
@@ -46,9 +55,9 @@ public class DeckOfCards {
         }
     }
 
-    // Initializing an empty deck for player1 and player2
-    public DeckOfCards(String playerName) {
-    }
+//    // Initializing an empty deck for player1 and player2
+//    public DeckOfCards(String playerName) {
+//    }
 
     public String toString() {
         return this.deck.toString() + this.getSize();
@@ -56,13 +65,8 @@ public class DeckOfCards {
     // deal one Card
     public Card dealCard() {
         // determine whether Cards remain to be dealt
-        if (currentCard < NUMBER_OF_CARDS) {
-            Card temp = deck.get(currentCard);
-            deck.remove(currentCard);
-            return temp; // return current Card in array
-        }
-        else {
-            return null; // return null to indicate that all Cards were dealt
-        }
+        Card card = deck.get(0);
+        deck.remove(0);
+        return card;
     }
 } 
